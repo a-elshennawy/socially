@@ -11,7 +11,8 @@ import {
   orderBy,
   onSnapshot,
 } from "firebase/firestore";
-import { FaHeart } from "react-icons/fa";
+import { FaHeart, FaQuestion, FaUser } from "react-icons/fa";
+import { MdVerified } from "react-icons/md";
 
 async function getPosts() {
   const q = query(collection(db, "posts"), orderBy("timestamp", "desc"));
@@ -102,8 +103,20 @@ export default function Home() {
               key={post.id}
               className="post m-0 col-11 row justify-content-start align-items-center gap-2"
             >
-              <h6 className="col-12">
-                <strong>{post.senderName}</strong> <br />
+              <h6 className="col-12 userName">
+                {post.senderName.toLowerCase() === "shennawy" ? (
+                  <>
+                    {post.senderName} <MdVerified />
+                  </>
+                ) : post.senderName.toLowerCase() === "anonymous" ? (
+                  <>
+                    {post.senderName} <FaQuestion />
+                  </>
+                ) : (
+                  <>
+                    {post.senderName} <FaUser />
+                  </>
+                )}
                 {post.timestamp.toLocaleString()}
               </h6>
               <h5 className="col-12" style={{ whiteSpace: "pre-wrap" }}>
