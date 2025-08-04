@@ -1,0 +1,98 @@
+@import url("./fonts.css");
+
+* {
+  box-sizing: border-box;
+  text-transform: capitalize !important;
+  font-family: ubuntu, zain !important;
+}
+
+:root {
+  --background: #000;
+  --color: #fff;
+}
+
+body {
+  background-color: var(--background) !important;
+  color: var(--color) !important;
+  transition: all 0.3s ease-in-out;
+}
+
+body.light {
+  --background: #fff;
+  --color: #000;
+  transition: all 0.3s ease-in-out;
+}
+
+section {
+  padding: 50px 0px;
+  background-color: transparent;
+}
+
+.posts {
+  .postInput {
+    padding: 10px 5px;
+    border: 1px solid var(--color);
+    border-radius: 5px;
+
+    textarea,
+    select,
+    input {
+      border: 1px solid var(--color);
+      outline: none;
+      border-radius: 5px;
+      padding: 5px;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    .btnArea {
+      text-align: end;
+
+      .postBtn {
+        border: none;
+        background-color: transparent;
+        color: var(--color);
+      }
+    }
+  }
+
+  .post {
+    border-bottom: 1px solid var(--color);
+    padding: 10px 5px;
+
+    .likesCounter {
+      display: flex;
+      align-items: center;
+
+      svg {
+        margin-inline-end: 5px;
+        font-size: 20px;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.sideBar {
+  position: fixed;
+  top: 20px;
+  right: 10px;
+
+  span {
+    cursor: pointer;
+    font-size: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color);
+    background-color: transparent;
+
+    a {
+      text-align: center;
+      text-decoration: none;
+      color: var(--color);
+    }
+  }
+}
