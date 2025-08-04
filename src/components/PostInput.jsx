@@ -1,7 +1,7 @@
-import { BsSendFill } from "react-icons/bs";
 import { useState } from "react";
 import { db } from "../firebase";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { MdPostAdd } from "react-icons/md";
 
 export default function PostInput() {
   const [newPost, setNewPost] = useState("");
@@ -70,7 +70,7 @@ export default function PostInput() {
         )}
 
         <select
-          className="col-lg-2 col-4"
+          className="col-lg-2 col-5"
           value={postType}
           onChange={(e) => setPostType(e.target.value)}
           required
@@ -80,9 +80,9 @@ export default function PostInput() {
           <option value="use_name">use your name</option>
         </select>
 
-        <div className="btnArea col-lg-1 col-2">
+        <div className="btnArea col-lg-1 col-1">
           <button disabled={!newPost.trim()} type="submit" className="postBtn">
-            <BsSendFill />
+            <MdPostAdd />
           </button>
         </div>
       </form>

@@ -48,12 +48,14 @@ section {
     }
 
     .btnArea {
-      text-align: end;
+      text-align: center;
 
       .postBtn {
         border: none;
+        padding: 0;
         background-color: transparent;
         color: var(--color);
+        font-size: 25px;
       }
     }
   }
