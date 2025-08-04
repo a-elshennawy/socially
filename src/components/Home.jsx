@@ -106,7 +106,9 @@ export default function Home() {
                 <strong>{post.senderName}</strong> <br />
                 {post.timestamp.toLocaleString()}
               </h6>
-              <h5 className="col-12">{post.text}</h5>
+              <h5 className="col-12" style={{ whiteSpace: "pre-wrap" }}>
+                {post.text}
+              </h5>
               <span
                 className="col-12 likesCounter"
                 onClick={() => toggleLike(post.id, post.likes)}
