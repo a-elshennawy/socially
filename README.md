@@ -11,7 +11,7 @@
 <li>React icons</li>
 <li>Bootstrape</li>
 <li>Firebase</li>
-<li>Hosted on cloudflare <a href="">hosted</a></li>
+<li>Hosted on cloudflare <a href="https://socially.pages.dev/">hosted</a></li>
 </ul>
 <br/>
 <a href="https://ahmed-elshennawy.vercel.app/">contact me :)</a>
