@@ -157,6 +157,7 @@ section {
     button {
       background-color: transparent;
       color: var(--color);
+      border: none;
       border-radius: 5px;
 
       svg {
