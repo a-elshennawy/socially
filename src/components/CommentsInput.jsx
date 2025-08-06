@@ -3,6 +3,8 @@ import { db } from "../firebase";
 import { doc, updateDoc, arrayUnion } from "firebase/firestore";
 import { FaHourglassEnd } from "react-icons/fa";
 import { IoSend } from "react-icons/io5";
+import { nanoid } from "nanoid";
+
 export default function CommentsInput({ postId }) {
   const [commentText, setCommentText] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -18,6 +20,8 @@ export default function CommentsInput({ postId }) {
       const postRef = doc(db, "posts", postId);
       await updateDoc(postRef, {
         comments: arrayUnion({
+          id: nanoid(),
+          likes: 0,
           text: commentText.trim(),
           timestamp: new Date(),
         }),

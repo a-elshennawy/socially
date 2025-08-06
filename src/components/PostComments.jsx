@@ -30,10 +30,9 @@ export default function PostComments() {
   });
 
   useEffect(() => {
-    setloading(true); // Set loading to true when a new fetch starts
+    setloading(true);
     const postRef = doc(db, "posts", postId);
 
-    // Use a single onSnapshot listener for both initial data and real-time updates
     const unsubscribe = onSnapshot(
       postRef,
       (docSnap) => {
@@ -46,7 +45,7 @@ export default function PostComments() {
           setPost(postData);
         } else {
           console.log("post is not found");
-          setPost(null); // Clear the post if it no longer exists
+          setPost(null);
         }
         setloading(false);
       },
@@ -56,7 +55,6 @@ export default function PostComments() {
       }
     );
 
-    // Cleanup function to detach the listener when the component unmounts
     return () => unsubscribe();
   }, [postId]);
 
@@ -91,6 +89,60 @@ export default function PostComments() {
         ...prev,
         likes: prev.likes,
       }));
+    }
+  };
+
+  const toggleCommLikes = async (commentId) => {
+    if (!post || !post.comments || !commentId) {
+      console.error("Invalid post, comments, or comment ID");
+      return;
+    }
+
+    const commentToUpdate = post.comments.find(
+      (comment) => comment.id === commentId
+    );
+    if (!commentToUpdate) {
+      console.error("Comment not found in state");
+      return;
+    }
+
+    try {
+      const isCurrentlyLiked = localLikeStatus[commentId];
+      const newLikeCount = isCurrentlyLiked
+        ? commentToUpdate.likes - 1
+        : commentToUpdate.likes + 1;
+
+      const updatedComments = post.comments.map((comment) =>
+        comment.id === commentId ? { ...comment, likes: newLikeCount } : comment
+      );
+
+      setLocalLikeStatus((prev) => ({
+        ...prev,
+        [commentId]: !isCurrentlyLiked,
+      }));
+      setPost((prev) => ({ ...prev, comments: updatedComments }));
+      localStorage.setItem(
+        "likedPosts",
+        JSON.stringify({ ...localLikeStatus, [commentId]: !isCurrentlyLiked })
+      );
+
+      const postRef = doc(db, "posts", post.id);
+      await updateDoc(postRef, {
+        comments: updatedComments,
+      });
+    } catch (err) {
+      console.error("Error updating comment like:", err);
+      const isCurrentlyLiked = localLikeStatus[commentId];
+      const revertedComments = post.comments.map((comment) =>
+        comment.id === commentId
+          ? { ...comment, likes: commentToUpdate.likes }
+          : comment
+      );
+      setLocalLikeStatus((prev) => ({
+        ...prev,
+        [commentId]: isCurrentlyLiked,
+      }));
+      setPost((prev) => ({ ...prev, comments: revertedComments }));
     }
   };
 
@@ -163,6 +215,14 @@ export default function PostComments() {
                           "Unknown date"}
                     </small>
                     <h5>{comment.text}</h5>
+                    <span
+                      className="col-12 likesCounter"
+                      onClick={() => toggleCommLikes(comment.id)}
+                      style={{ cursor: "pointer" }}
+                    >
+                      {localLikeStatus[comment.id] ? <FaHeart /> : <CiHeart />}
+                      {comment.likes}
+                    </span>
                   </div>
                 ))
             ) : (
