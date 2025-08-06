@@ -60,7 +60,7 @@ export default function CommentsInput({ postId }) {
           placeholder="Add a comment..."
           disabled={isSubmitting}
         />
-        <div className="btnArea col-5 p-0 text-center">
+        <div className="btnArea col-5 p-0 text-start">
           <button type="submit" disabled={!commentText.trim() || isSubmitting}>
             {isSubmitting ? (
               <>
