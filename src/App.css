@@ -156,9 +156,12 @@ section {
   .btnArea {
     button {
       background-color: transparent;
-      border: 1px solid var(--color);
       color: var(--color);
       border-radius: 5px;
+
+      svg {
+        font-size: 25px;
+      }
     }
   }
 }
