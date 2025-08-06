@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { db } from "../firebase";
 import { doc, updateDoc, arrayUnion } from "firebase/firestore";
+import { FaHourglassEnd } from "react-icons/fa";
+import { IoSend } from "react-icons/io5";
 export default function CommentsInput({ postId }) {
   const [commentText, setCommentText] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -60,7 +62,15 @@ export default function CommentsInput({ postId }) {
         />
         <div className="btnArea col-5 p-0 text-center">
           <button type="submit" disabled={!commentText.trim() || isSubmitting}>
-            {isSubmitting ? "Posting..." : "Add Comment"}
+            {isSubmitting ? (
+              <>
+                <FaHourglassEnd />
+              </>
+            ) : (
+              <>
+                <IoSend />
+              </>
+            )}
           </button>
         </div>
       </form>
