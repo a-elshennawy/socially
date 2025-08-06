@@ -19,6 +19,7 @@ export default function PostInput() {
         senderName: name || "anonymous",
         timestamp: serverTimestamp(),
         likes: 0,
+        comments: [],
       });
       setNewPost("");
     } catch (err) {

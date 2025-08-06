@@ -1,6 +1,7 @@
 import { use, Suspense, useState, useEffect } from "react";
 import { CiHeart } from "react-icons/ci";
 import PostInput from "./PostInput";
+import SpinnerLoader from "./SpinnerLoader";
 import { db } from "../firebase";
 import {
   collection,
@@ -13,6 +14,8 @@ import {
 } from "firebase/firestore";
 import { FaHeart, FaQuestion, FaUser } from "react-icons/fa";
 import { MdVerified } from "react-icons/md";
+import { LiaCommentSolid } from "react-icons/lia";
+import { Link } from "react-router-dom";
 
 async function getPosts() {
   const q = query(collection(db, "posts"), orderBy("timestamp", "desc"));
@@ -94,7 +97,7 @@ export default function Home() {
   };
 
   return (
-    <Suspense fallback={<p>loading posts...</p>}>
+    <Suspense fallback={<SpinnerLoader />}>
       <section className="container">
         <div className="posts row justify-content-start align-items-center gap-2 m-0">
           <PostInput />
@@ -123,13 +126,19 @@ export default function Home() {
                 {post.text}
               </h5>
               <span
-                className="col-12 likesCounter"
+                className="col-lg-2 col-5 likesCounter"
                 onClick={() => toggleLike(post.id, post.likes)}
                 style={{ cursor: "pointer" }}
               >
                 {localLikeStatus[post.id] ? <FaHeart /> : <CiHeart />}
                 {post.likes}
               </span>
+              <Link
+                to={`/PostComments/${post.id}`}
+                className="col-lg-2 col-5 comments"
+              >
+                <LiaCommentSolid /> {post.comments?.length || 0} Comments
+              </Link>
             </div>
           ))}
         </div>

@@ -8,11 +8,6 @@ export default function SideBar() {
       <div className="sideBar">
         <ThemeToggle />
         <span>
-          <a href={"#addPost"}>
-            <MdPostAdd />
-          </a>
-        </span>
-        <span>
           <a href="https://ahmed-elshennawy.vercel.app/" target="_blank">
             <BiSupport />
           </a>
