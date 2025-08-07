@@ -153,7 +153,7 @@ export default function PostComments() {
 
   return (
     <>
-      <section className="container-fluid">
+      <section className="container-fluid postComm">
         <div
           key={post.id}
           className="postDetails m-0 row justify-content-start align-items-center gap-1"

@@ -107,7 +107,7 @@ export default function Home() {
 
   return (
     <Suspense fallback={<SpinnerLoader />}>
-      <section className="container">
+      <section className="container postsFeed">
         <div className="posts row justify-content-start align-items-center gap-2 m-0">
           <PostInput />
           <FilterPannel
