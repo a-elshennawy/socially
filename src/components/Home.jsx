@@ -1,3 +1,4 @@
+import { motion } from "motion/react";
 import { use, Suspense, useState, useEffect } from "react";
 import { CiHeart } from "react-icons/ci";
 import PostInput from "./PostInput";
@@ -115,7 +116,10 @@ export default function Home() {
             currentFilter={filterType}
           />
           {allPosts.map((post) => (
-            <div
+            <motion.div
+              initial={{ y: 100, opacity: 0, scale: 0.5 }}
+              whileInView={{ y: 0, opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
               key={post.id}
               className="post m-0 col-11 row justify-content-start align-items-center gap-2"
             >
@@ -152,7 +156,7 @@ export default function Home() {
               >
                 <FaComments /> {post.comments?.length || 0} Comments
               </Link>
-            </div>
+            </motion.div>
           ))}
         </div>
       </section>
