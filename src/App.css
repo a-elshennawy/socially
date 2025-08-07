@@ -30,8 +30,13 @@ body.light {
   transition: all 0.3s ease-in-out;
 }
 
-section {
+.postComm {
   padding: 50px 0px;
+  background-color: transparent;
+}
+
+.postsFeed {
+  padding: 30px 0px;
   background-color: transparent;
 }
 
