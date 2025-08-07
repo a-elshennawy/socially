@@ -16,6 +16,7 @@ import { FaComments, FaQuestion, FaUser } from "react-icons/fa";
 import { MdVerified } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { FcLike } from "react-icons/fc";
+import FilterPannel from "./FilterPannel";
 
 async function getPosts() {
   const q = query(collection(db, "posts"), orderBy("timestamp", "desc"));
@@ -33,6 +34,7 @@ const postsPromise = getPosts();
 export default function Home() {
   const posts = use(postsPromise);
   const [allPosts, setAllPosts] = useState(posts);
+  const [filterType, setFilterType] = useState("newFirst");
 
   const [localLikeStatus, setLocalLikeStatus] = useState(() => {
     if (typeof window !== "undefined") {
@@ -43,7 +45,10 @@ export default function Home() {
   });
 
   useEffect(() => {
-    const q = query(collection(db, "posts"), orderBy("timestamp", "desc"));
+    const q = query(
+      collection(db, "posts"),
+      orderBy("timestamp", filterType === "oldFirst" ? "asc" : "desc")
+    );
     const unsubscribe = onSnapshot(q, (snapshot) => {
       const updatedPosts = snapshot.docs.map((doc) => ({
         id: doc.id,
@@ -53,7 +58,7 @@ export default function Home() {
       setAllPosts(updatedPosts);
     });
     return () => unsubscribe();
-  }, []);
+  }, [filterType]);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -96,11 +101,19 @@ export default function Home() {
     }
   };
 
+  const handleFilterChange = (newFilter) => {
+    setFilterType(newFilter);
+  };
+
   return (
     <Suspense fallback={<SpinnerLoader />}>
       <section className="container">
         <div className="posts row justify-content-start align-items-center gap-2 m-0">
           <PostInput />
+          <FilterPannel
+            onFilterChange={handleFilterChange}
+            currentFilter={filterType}
+          />
           {allPosts.map((post) => (
             <div
               key={post.id}
