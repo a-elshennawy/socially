@@ -54,7 +54,7 @@ export default function PostInput() {
           }}
           name="postBody"
           placeholder="add post..."
-          className="col-12 col-lg-6"
+          className="col-12 col-lg-5"
           rows={1}
           value={newPost}
         ></textarea>
@@ -71,7 +71,7 @@ export default function PostInput() {
         )}
 
         <select
-          className="col-lg-2 col-5"
+          className="col-6 col-lg-2"
           value={postType}
           onChange={(e) => setPostType(e.target.value)}
           required
@@ -81,9 +81,9 @@ export default function PostInput() {
           <option value="use_name">use your name</option>
         </select>
 
-        <div className="btnArea col-lg-1 col-1">
+        <div className="btnArea col-lg-2 col-5 p-0">
           <button disabled={!newPost.trim()} type="submit" className="postBtn">
-            <MdPostAdd />
+            add post
           </button>
         </div>
       </form>

@@ -12,10 +12,10 @@ import {
   orderBy,
   onSnapshot,
 } from "firebase/firestore";
-import { FaHeart, FaQuestion, FaUser } from "react-icons/fa";
+import { FaComments, FaQuestion, FaUser } from "react-icons/fa";
 import { MdVerified } from "react-icons/md";
-import { LiaCommentSolid } from "react-icons/lia";
 import { Link } from "react-router-dom";
+import { FcLike } from "react-icons/fc";
 
 async function getPosts() {
   const q = query(collection(db, "posts"), orderBy("timestamp", "desc"));
@@ -126,18 +126,18 @@ export default function Home() {
                 {post.text}
               </h5>
               <span
-                className="col-lg-2 col-5 likesCounter"
+                className="col-lg-2 col-4 likesCounter"
                 onClick={() => toggleLike(post.id, post.likes)}
                 style={{ cursor: "pointer" }}
               >
-                {localLikeStatus[post.id] ? <FaHeart /> : <CiHeart />}
+                {localLikeStatus[post.id] ? <FcLike /> : <CiHeart />}
                 {post.likes}
               </span>
               <Link
                 to={`/PostComments/${post.id}`}
-                className="col-lg-2 col-5 comments"
+                className="col-lg-2 col-6 comments"
               >
-                <LiaCommentSolid /> {post.comments?.length || 0} Comments
+                <FaComments /> {post.comments?.length || 0} Comments
               </Link>
             </div>
           ))}

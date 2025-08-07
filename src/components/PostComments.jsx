@@ -2,19 +2,12 @@ import { Link, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { CiHeart } from "react-icons/ci";
 import { db } from "../firebase";
-import {
-  orderBy,
-  query,
-  collection,
-  doc,
-  getDoc,
-  onSnapshot,
-  updateDoc,
-} from "firebase/firestore";
-import { FaHeart, FaQuestion, FaUser } from "react-icons/fa";
+import { doc, onSnapshot, updateDoc } from "firebase/firestore";
+import { FaQuestion, FaUser } from "react-icons/fa";
 import { MdVerified } from "react-icons/md";
 import SpinnerLoader from "./SpinnerLoader";
 import CommentsInput from "./CommentsInput";
+import { FcLike } from "react-icons/fc";
 
 export default function PostComments() {
   const { postId } = useParams();
@@ -195,7 +188,7 @@ export default function PostComments() {
               onClick={toggleLike}
               style={{ cursor: "pointer" }}
             >
-              {localLikeStatus[post.id] ? <FaHeart /> : <CiHeart />}
+              {localLikeStatus[post.id] ? <FcLike /> : <CiHeart />}
               {post.likes}
             </span>
           </div>
@@ -220,7 +213,7 @@ export default function PostComments() {
                       onClick={() => toggleCommLikes(comment.id)}
                       style={{ cursor: "pointer" }}
                     >
-                      {localLikeStatus[comment.id] ? <FaHeart /> : <CiHeart />}
+                      {localLikeStatus[comment.id] ? <FcLike /> : <CiHeart />}
                       {comment.likes}
                     </span>
                   </div>

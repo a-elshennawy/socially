@@ -8,6 +8,12 @@
 :root {
   --background: #000;
   --color: #fff;
+  --postBackG: linear-gradient(
+    135deg,
+    rgba(99, 0, 255, 0.15),
+    rgba(0, 204, 255, 0.15)
+  );
+  --postsBorder: #000;
 }
 
 body {
@@ -19,6 +25,8 @@ body {
 body.light {
   --background: #fff;
   --color: #000;
+  --postBackG: #fff;
+  --postsBorder: #000;
   transition: all 0.3s ease-in-out;
 }
 
@@ -31,14 +39,14 @@ section {
   .postInput {
     padding: 10px 5px;
     border: 1px solid var(--color);
-    border-radius: 5px;
+    border-radius: 16px;
 
     textarea,
     select,
     input {
       border: 1px solid var(--color);
       outline: none;
-      border-radius: 5px;
+      border-radius: 16px;
       padding: 5px;
 
       &:focus {
@@ -47,20 +55,22 @@ section {
     }
 
     .btnArea {
-      text-align: center;
+      text-align: start;
 
       .postBtn {
-        border: none;
-        padding: 0;
+        border: 1px solid var(--color);
+        border-radius: 16px;
+        padding: 5px 10px;
         background-color: transparent;
         color: var(--color);
-        font-size: 25px;
       }
     }
   }
 
   .post {
-    border-bottom: 1px solid var(--color);
+    background: var(--postBackG);
+    border: 1px solid var(--postsBorder);
+    border-radius: 16px;
     padding: 10px 5px;
 
     .userName {
@@ -74,6 +84,7 @@ section {
       display: flex;
       align-items: center;
       color: var(--color);
+      text-decoration: none;
 
       svg {
         margin-inline-end: 5px;
