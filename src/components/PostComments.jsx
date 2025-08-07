@@ -169,6 +169,10 @@ export default function PostComments() {
                 <>
                   {post.senderName} <MdVerified />
                 </>
+              ) : post.senderName.toLowerCase() === "ghall" ? (
+                <>
+                  {post.senderName} <MdVerified />
+                </>
               ) : post.senderName.toLowerCase() === "anonymous" ? (
                 <>
                   {post.senderName} <FaQuestion />
