@@ -43,7 +43,6 @@ body.light {
 .posts {
   .postInput {
     padding: 10px 5px;
-    border: 1px solid var(--color);
     border-radius: 16px;
     transition: all 0.3s ease-in-out;
 
