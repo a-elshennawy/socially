@@ -18,6 +18,7 @@ import { MdVerified } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { FcLike } from "react-icons/fc";
 import FilterPannel from "./FilterPannel";
+import { linkify } from "../utils/linkify";
 
 async function getPosts() {
   const q = query(collection(db, "posts"), orderBy("timestamp", "desc"));
@@ -144,7 +145,7 @@ export default function Home() {
                 {post.timestamp.toLocaleString()}
               </h6>
               <h5 className="col-12" style={{ whiteSpace: "pre-wrap" }}>
-                {post.text}
+                {linkify(post.text)}
               </h5>
               <span
                 className="col-lg-2 col-4 likesCounter"
