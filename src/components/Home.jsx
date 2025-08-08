@@ -119,7 +119,7 @@ export default function Home() {
             <motion.div
               initial={{ y: 100, opacity: 0, scale: 0.5 }}
               whileInView={{ y: 0, opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.5 }}
+              transition={{ duration: 0.1, ease: "linear" }}
               key={post.id}
               className="post m-0 col-11 row justify-content-start align-items-center gap-2"
             >
@@ -128,8 +128,7 @@ export default function Home() {
                   <>
                     {post.senderName} <MdVerified />
                   </>
-                )
-                : post.senderName.toLowerCase() === "ghall" ? (
+                ) : post.senderName.toLowerCase() === "ghall" ? (
                   <>
                     {post.senderName} <MdVerified />
                   </>
