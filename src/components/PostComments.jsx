@@ -8,6 +8,7 @@ import { MdVerified } from "react-icons/md";
 import SpinnerLoader from "./SpinnerLoader";
 import CommentsInput from "./CommentsInput";
 import { FcLike } from "react-icons/fc";
+import { linkify } from "../utils/linkify";
 
 export default function PostComments() {
   const { postId } = useParams();
@@ -185,7 +186,7 @@ export default function PostComments() {
             </h5>
             <p>{post.timestamp.toLocaleString()}</p>
             <h3 className="col-12 postBody" style={{ whiteSpace: "pre-wrap" }}>
-              {post.text}
+              {linkify(post.text)}
             </h3>
             <span
               className="col-12 likesCounter"
