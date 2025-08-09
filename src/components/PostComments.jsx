@@ -9,8 +9,7 @@ import SpinnerLoader from "./SpinnerLoader";
 import CommentsInput from "./CommentsInput";
 import { FcLike } from "react-icons/fc";
 import { linkify } from "../utils/linkify";
-import { HelmetProvider, Helmet } from "react-helmet-async";
-
+import { Helmet } from "react-helmet";
 export default function PostComments() {
   const { postId } = useParams();
   const [post, setPost] = useState(null);
@@ -155,46 +154,43 @@ export default function PostComments() {
 
   return (
     <>
-      <HelmetProvider>
-        <Helmet>
-          <title>{`Socialy - Post ${postId} Comments`}</title>
-          <meta
-            name="description"
-            content={`View comments on this post: "${post.text.substring(
-              0,
-              100
-            )}..."`}
-          />
-          {/* Open Graph */}
-          <meta property="og:title" content={`Socialy - Post ${postId}`} />
-          <meta
-            property="og:description"
-            content={`"${post.text.substring(0, 100)}..." (View comments)`}
-          />
-          <meta
-            property="og:url"
-            content={`https://socially.pages.dev/PostComments/${postId}`}
-          />
-          <meta property="og:type" content="article" />{" "}
-          {/* Better for posts! */}
-          <meta
-            property="og:image"
-            content={
-              post.imageUrl ||
-              "https://socially.pages.dev/default-social-preview.jpg"
-            }
-          />
-          {/* Twitter */}
-          <meta name="twitter:card" content="summary_large_image" />
-          <meta
-            name="twitter:image"
-            content={
-              post.imageUrl ||
-              "https://socially.pages.dev/default-social-preview.jpg"
-            }
-          />
-        </Helmet>
-      </HelmetProvider>
+      <Helmet>
+        <title>{`Socialy - Post ${postId} Comments`}</title>
+        <meta
+          name="description"
+          content={`View comments on this post: "${post.text.substring(
+            0,
+            100
+          )}..."`}
+        />
+        {/* Open Graph */}
+        <meta property="og:title" content={`Socialy - Post ${postId}`} />
+        <meta
+          property="og:description"
+          content={`"${post.text.substring(0, 100)}..." (View comments)`}
+        />
+        <meta
+          property="og:url"
+          content={`https://socially.pages.dev/PostComments/${postId}`}
+        />
+        <meta property="og:type" content="article" /> {/* Better for posts! */}
+        <meta
+          property="og:image"
+          content={
+            post.imageUrl ||
+            "https://socially.pages.dev/default-social-preview.jpg"
+          }
+        />
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:image"
+          content={
+            post.imageUrl ||
+            "https://socially.pages.dev/default-social-preview.jpg"
+          }
+        />
+      </Helmet>
       <section className="container-fluid postComm">
         <div
           key={post.id}
