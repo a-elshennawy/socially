@@ -19,7 +19,7 @@ import { Link } from "react-router-dom";
 import { FcLike } from "react-icons/fc";
 import FilterPannel from "./FilterPannel";
 import { linkify } from "../utils/linkify";
-import { Helmet } from "react-helmet";
+import { HelmetProvider, Helmet } from "react-helmet-async";
 
 async function getPosts() {
   const q = query(collection(db, "posts"), orderBy("timestamp", "desc"));
@@ -110,13 +110,25 @@ export default function Home() {
 
   return (
     <Suspense fallback={<SpinnerLoader />}>
-      <Helmet>
-        <title>Socialy - Home Page</title>
-        <meta
-          name="description"
-          content="welcome to socialy .. your safe space social app introduced by someone giving a place where you can say anything you need to anonymously or with your customized name"
-        />
-      </Helmet>
+      <HelmetProvider>
+        <Helmet>
+          <title>Socialy - Home Page</title>
+          <meta
+            name="description"
+            content="welcome to socialy .. your safe space social app introduced by someone giving a place where you can say anything you need to anonymously or with your customized name"
+          />
+          {/* Open Graph (Facebook/Discord/WhatsApp) */}
+          <meta property="og:title" content="Socialy - Home Page" />
+          <meta
+            property="og:description"
+            content="welcome to socialy .. your safe space social app introduced by someone giving a place where you can say anything you need to anonymously or with your customized name"
+          />
+          <meta property="og:url" content="https://socially.pages.dev/" />
+          <meta property="og:type" content="website" />
+          {/* Twitter */}
+          <meta name="twitter:card" content="summary_large_image" />
+        </Helmet>
+      </HelmetProvider>
       <section className="container postsFeed">
         <div className="posts row justify-content-start align-items-center gap-2 m-0">
           <PostInput />
