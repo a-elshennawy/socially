@@ -144,7 +144,10 @@ export default function Home() {
             >
               <h6 className="col-12 userName">
                 {post.senderName} {getUsernameIcon(post.senderName)}
-                {post.timestamp.toLocaleTimeString("en-US", {
+                {post.timestamp.toLocaleString("en-US", {
+                  month: "numeric",
+                  day: "numeric",
+                  year: "numeric",
                   hour: "numeric",
                   minute: "2-digit",
                   hour12: true,

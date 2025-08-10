@@ -140,6 +140,20 @@ export default function PostComments() {
     }
   };
 
+  const getUsernameIcon = (name) => {
+    const lowerTrimmedName = name.trim().toLowerCase();
+    if (
+      lowerTrimmedName.includes("shennawy") ||
+      lowerTrimmedName.includes("ghall")
+    ) {
+      return <MdVerified />;
+    }
+    if (lowerTrimmedName.includes("anonymous")) {
+      return <FaQuestion />;
+    }
+    return <FaUser />;
+  };
+
   if (loading) {
     return <SpinnerLoader />;
   }
@@ -169,25 +183,18 @@ export default function PostComments() {
           </div>
           <div className="upperPostBody">
             <h5 className="col-12 userName m-0">
-              {post.senderName.toLowerCase() === "shennawy" ? (
-                <>
-                  {post.senderName} <MdVerified />
-                </>
-              ) : post.senderName.toLowerCase() === "ghall" ? (
-                <>
-                  {post.senderName} <MdVerified />
-                </>
-              ) : post.senderName.toLowerCase() === "anonymous" ? (
-                <>
-                  {post.senderName} <FaQuestion />
-                </>
-              ) : (
-                <>
-                  {post.senderName} <FaUser />
-                </>
-              )}
+              {post.senderName} {getUsernameIcon(post.senderName)}
             </h5>
-            <p>{post.timestamp.toLocaleString()}</p>
+            <p>
+              {post.timestamp.toLocaleString("en-US", {
+                month: "numeric",
+                day: "numeric",
+                year: "numeric",
+                hour: "numeric",
+                minute: "2-digit",
+                hour12: true,
+              })}
+            </p>
             <h3 className="col-12 postBody" style={{ whiteSpace: "pre-wrap" }}>
               {linkify(post.text)}
             </h3>
