@@ -6,14 +6,4 @@ export default defineConfig({
   optimizeDeps: {
     include: ["react-helmet"],
   },
-  build: {
-    rollupOptions: {
-      output: {
-        // Cache busting - adds hash to filenames
-        entryFileNames: `[name]-[hash].js`,
-        chunkFileNames: `[name]-[hash].js`,
-        assetFileNames: `[name]-[hash].[ext]`,
-      },
-    },
-  },
 });
