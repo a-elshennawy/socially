@@ -218,9 +218,22 @@ export default function PostComments() {
                   <div key={index} className="comment">
                     <small>
                       {comment.timestamp?.toDate
-                        ? comment.timestamp.toDate().toLocaleString()
-                        : new Date(comment.timestamp).toLocaleString() ||
-                          "Unknown date"}
+                        ? comment.timestamp.toDate().toLocaleString("en-US", {
+                            month: "numeric",
+                            day: "numeric",
+                            year: "numeric",
+                            hour: "numeric",
+                            minute: "2-digit",
+                            hour12: true,
+                          })
+                        : new Date(comment.timestamp).toLocaleString("en-US", {
+                            month: "numeric",
+                            day: "numeric",
+                            year: "numeric",
+                            hour: "numeric",
+                            minute: "2-digit",
+                            hour12: true,
+                          }) || "Unknown date"}
                     </small>
                     <h5>{comment.text}</h5>
                     <span
