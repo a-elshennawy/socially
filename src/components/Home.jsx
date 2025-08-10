@@ -108,6 +108,20 @@ export default function Home() {
     setFilterType(newFilter);
   };
 
+  const getUsernameIcon = (name) => {
+    const lowerTrimmedName = name.trim().toLowerCase();
+    if (
+      lowerTrimmedName.includes("shennawy") ||
+      lowerTrimmedName.includes("ghall")
+    ) {
+      return <MdVerified />;
+    }
+    if (lowerTrimmedName.includes("anonymous")) {
+      return <FaQuestion />;
+    }
+    return <FaUser />;
+  };
+
   return (
     <Suspense fallback={<SpinnerLoader />}>
       <Helmet>
@@ -129,24 +143,12 @@ export default function Home() {
               className="post m-0 col-11 row justify-content-start align-items-center gap-2"
             >
               <h6 className="col-12 userName">
-                {post.senderName.toLowerCase() === "shennawy" ? (
-                  <>
-                    {post.senderName} <MdVerified />
-                  </>
-                ) : post.senderName.toLowerCase() === "ghall" ? (
-                  <>
-                    {post.senderName} <MdVerified />
-                  </>
-                ) : post.senderName.toLowerCase() === "anonymous" ? (
-                  <>
-                    {post.senderName} <FaQuestion />
-                  </>
-                ) : (
-                  <>
-                    {post.senderName} <FaUser />
-                  </>
-                )}
-                {post.timestamp.toLocaleString()}
+                {post.senderName} {getUsernameIcon(post.senderName)}
+                {post.timestamp.toLocaleTimeString("en-US", {
+                  hour: "numeric",
+                  minute: "2-digit",
+                  hour12: true,
+                })}
               </h6>
               <h5 className="col-12" style={{ whiteSpace: "pre-wrap" }}>
                 {linkify(post.text)}
