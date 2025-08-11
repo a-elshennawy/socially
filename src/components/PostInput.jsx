@@ -28,7 +28,7 @@ export default function PostInput() {
   const addPost = async (e) => {
     e.preventDefault();
 
-    if (!newPost.trim()) return;
+    if (!newPost.trim() && !imageAsBase64) return;
 
     try {
       await addDoc(collection(db, "posts"), {
@@ -41,6 +41,7 @@ export default function PostInput() {
       });
       setNewPost("");
       setImageAsBase64(null);
+      setImageName(null);
     } catch (err) {
       console.error("error adding post", err);
     }
