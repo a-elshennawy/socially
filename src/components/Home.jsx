@@ -38,6 +38,7 @@ export default function Home() {
   const posts = use(postsPromise);
   const [allPosts, setAllPosts] = useState(posts);
   const [filterType, setFilterType] = useState("newFirst");
+  const [enlargedImage, setEnlargedImage] = useState(null);
 
   const [localLikeStatus, setLocalLikeStatus] = useState(() => {
     if (typeof window !== "undefined") {
@@ -156,6 +157,15 @@ export default function Home() {
               <h5 className="col-12" style={{ whiteSpace: "pre-wrap" }}>
                 {linkify(post.text)}
               </h5>
+              {post.image && (
+                <div className="post-image-container col-12">
+                  <img
+                    src={post.image}
+                    alt="Posted media"
+                    onClick={() => setEnlargedImage(post.image)}
+                  />
+                </div>
+              )}
               <span
                 className="col-lg-2 col-4 likesCounter"
                 onClick={() => toggleLike(post.id, post.likes)}
@@ -174,6 +184,37 @@ export default function Home() {
           ))}
         </div>
       </section>
+
+      {enlargedImage && (
+        <div
+          onClick={() => setEnlargedImage(null)}
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            backgroundColor: "rgba(0, 0, 0, 0.9)",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            zIndex: 1000,
+          }}
+        >
+          <img
+            src={enlargedImage}
+            alt="Enlarged media"
+            style={{
+              maxWidth: "90%",
+              maxHeight: "90%",
+              objectFit: "contain",
+              borderRadius: "8px",
+              cursor: "pointer",
+            }}
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>
+      )}
     </Suspense>
   );
 }

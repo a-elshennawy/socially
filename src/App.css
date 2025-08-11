@@ -59,7 +59,17 @@ body.light {
         outline: none;
       }
     }
-
+    .imgUp {
+      width: fit-content;
+      label {
+        border: 1px solid var(--color);
+        border-radius: 16px;
+        padding: 5px 10px;
+        background-color: var(--color);
+        color: var(--background);
+        transition: all 0.3s ease-in-out;
+      }
+    }
     .btnArea {
       text-align: start;
 
@@ -97,6 +107,17 @@ body.light {
       display: flex;
       align-items: center;
       gap: 5px;
+    }
+
+    .post-image-container {
+      overflow: hidden;
+      padding: 0;
+
+      img {
+        border-radius: 16px;
+        width: 50%;
+        margin: auto;
+      }
     }
 
     .likesCounter,
@@ -148,6 +169,17 @@ body.light {
 
   .postBody {
     padding-bottom: 10px;
+  }
+
+  .post-image-container {
+    overflow: hidden;
+    padding: 0;
+
+    img {
+      border-radius: 16px;
+      width: 30%;
+      margin: auto;
+    }
   }
 
   .likesCounter {
