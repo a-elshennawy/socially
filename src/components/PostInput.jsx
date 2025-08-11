@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { db } from "../firebase";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
-import heic2any from "heic2any";
+import { MdPostAdd } from "react-icons/md";
+import { BiSolidImageAdd } from "react-icons/bi";
 
 export default function PostInput() {
   const [newPost, setNewPost] = useState("");
@@ -10,45 +11,18 @@ export default function PostInput() {
   const [imageAsBase64, setImageAsBase64] = useState(null);
   const [imageName, setImageName] = useState(null);
 
-  const handleImageChange = async (e) => {
+  const handleImageChange = (e) => {
     const file = e.target.files[0];
-    if (!file) return;
+    if (file) {
+      setImageName(file.name);
+      const reader = new FileReader();
 
-    let processedFile = file;
+      reader.onload = (readerEvent) => {
+        setImageAsBase64(readerEvent.target.result);
+      };
 
-    if (file.name.toLowerCase().endsWith(".heic")) {
-      try {
-        const convertedBlob = await heic2any({
-          blob: file,
-          toType: "image/jpeg",
-          quality: 0.8,
-        });
-
-        processedFile = new File(
-          [convertedBlob],
-          file.name.replace(/\.heic$/i, ".jpeg"),
-          {
-            type: "image/jpeg",
-            lastModified: new Date().getTime(),
-          }
-        );
-      } catch (error) {
-        console.error("Error converting HEIC image:", error);
-
-        alert("Could not convert HEIC image. Please try a different format.");
-        return;
-      }
+      reader.readAsDataURL(file);
     }
-
-    setImageName(processedFile.name);
-    const reader = new FileReader();
-
-    reader.onload = (readerEvent) => {
-      setImageAsBase64(readerEvent.target.result);
-    };
-
-    // Read the processed file (either the original or the converted one)
-    reader.readAsDataURL(processedFile);
   };
 
   const addPost = async (e) => {
