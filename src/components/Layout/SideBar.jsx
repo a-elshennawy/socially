@@ -1,6 +1,5 @@
 import { BiSupport } from "react-icons/bi";
-import { ThemeToggle } from "./ThemeProvider";
-import { MdPostAdd } from "react-icons/md";
+import { ThemeToggle } from "../Contexts/ThemeProvider";
 
 export default function SideBar() {
   return (
