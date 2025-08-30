@@ -176,25 +176,22 @@ export default function Home() {
                 </div>
               )}
               <span
-                className="col-lg-2 col-4 likesCounter"
+                className="col-3 likesCounter"
                 onClick={() => toggleLike(post.id, post.likes)}
                 style={{ cursor: "pointer" }}
               >
                 {localLikeStatus[post.id] ? <FcLike /> : <CiHeart />}
                 {post.likes}
               </span>
-              <Link
-                to={`/PostComments/${post.id}`}
-                className="col-lg-2 col-4 comments"
-              >
-                <FaComments /> {post.comments?.length || 0} Comments
+              <Link to={`/PostComments/${post.id}`} className="col-3 comments">
+                <FaComments /> {post.comments?.length || 0}
               </Link>
               <span
-                className="col-lg-2 col-3"
+                className="col-3"
                 onClick={() => copyPostUrl(post.id)}
                 style={{ cursor: "pointer" }}
               >
-                <FaShare /> Share
+                <FaShare />
               </span>
             </motion.div>
           ))}

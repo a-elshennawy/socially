@@ -1,3 +1,4 @@
+import { motion } from "motion/react";
 import { Link, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { CiHeart } from "react-icons/ci";
@@ -192,7 +193,7 @@ export default function PostComments() {
               <Link to={"/"}>back</Link>
             </button>
           </div>
-          <div className="upperPostBody">
+          <div className="upperPostBody row">
             <h5 className="col-12 userName m-0">
               {post.senderName} {getUsernameIcon(post.senderName)}
             </h5>
@@ -219,7 +220,7 @@ export default function PostComments() {
               </div>
             )}
             <span
-              className="col-6 likesCounter"
+              className="col-lg-1 col-6 likesCounter text-start py-2"
               onClick={toggleLike}
               style={{ cursor: "pointer" }}
             >
@@ -227,11 +228,11 @@ export default function PostComments() {
               {post.likes}
             </span>
             <span
-              className="col-6"
+              className="col-lg-1 col-6 text-end py-2"
               onClick={() => copyPostUrl(post.id)}
               style={{ cursor: "pointer" }}
             >
-              <FaShare /> Share
+              <FaShare />
             </span>
           </div>
           <CommentsInput postId={postId} />
