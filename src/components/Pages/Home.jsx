@@ -122,7 +122,7 @@ export default function Home() {
     return <FaUser />;
   };
 
-  const copyPostUrl = (post) => {
+  const copyPostUrl = (postId) => {
     const postUrl = `https://socially.pages.dev/PostComments/${postId}`;
     navigator.clipboard
       .writeText(postUrl)
