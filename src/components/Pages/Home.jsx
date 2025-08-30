@@ -194,7 +194,7 @@ export default function Home() {
                 onClick={() => copyPostUrl(post.id)}
                 style={{ cursor: "pointer" }}
               >
-                <FaShare />
+                <FaShare /> Share
               </span>
             </motion.div>
           ))}

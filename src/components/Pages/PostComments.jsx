@@ -14,6 +14,7 @@ export default function PostComments() {
   const [post, setPost] = useState(null);
   const [loading, setloading] = useState(true);
   const [enlargedImage, setEnlargedImage] = useState(null);
+  const [showNotification, setShowNotification] = useState(false);
 
   const [localLikeStatus, setLocalLikeStatus] = useState(() => {
     if (typeof window !== "undefined") {
@@ -166,6 +167,19 @@ export default function PostComments() {
     );
   }
 
+  const copyPostUrl = (postId) => {
+    const postUrl = `https://socially.pages.dev/PostComments/${postId}`;
+    navigator.clipboard
+      .writeText(postUrl)
+      .then(() => {
+        setShowNotification(true);
+        setTimeout(() => setShowNotification(false), 3000);
+      })
+      .catch((err) => {
+        console.error("failed to copy link :", err);
+      });
+  };
+
   return (
     <>
       <section className="container-fluid postComm">
@@ -205,12 +219,19 @@ export default function PostComments() {
               </div>
             )}
             <span
-              className="col-12 likesCounter"
+              className="col-6 likesCounter"
               onClick={toggleLike}
               style={{ cursor: "pointer" }}
             >
               {localLikeStatus[post.id] ? <FcLike /> : <CiHeart />}
               {post.likes}
+            </span>
+            <span
+              className="col-6"
+              onClick={() => copyPostUrl(post.id)}
+              style={{ cursor: "pointer" }}
+            >
+              <FaShare /> Share
             </span>
           </div>
           <CommentsInput postId={postId} />
@@ -288,6 +309,28 @@ export default function PostComments() {
             onClick={(e) => e.stopPropagation()}
           />
         </div>
+      )}
+
+      {showNotification && (
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 50 }}
+          style={{
+            position: "fixed",
+            bottom: "20px",
+            left: "50%",
+            transform: "translateX(-50%)",
+            backgroundColor: "#333",
+            color: "white",
+            padding: "12px 24px",
+            borderRadius: "8px",
+            boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
+            zIndex: 1001,
+          }}
+        >
+          Post link copied!
+        </motion.div>
       )}
     </>
   );
