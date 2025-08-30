@@ -3,7 +3,6 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./App.css";
 import Layout from "./components/Layout";
 import SpinnerLoader from "./components/SpinnerLoader";
-import ThemeProvider from "./components/ThemeProvider";
 
 const Home = lazy(() => import("./components/Home"));
 const PostComments = lazy(() => import("./components/PostComments"));
@@ -17,11 +16,7 @@ function App() {
   const routes = createBrowserRouter([
     {
       path: "/",
-      element: (
-        <ThemeProvider>
-          <Layout />
-        </ThemeProvider>
-      ),
+      element: <Layout />,
       children: [
         createRoute("", <Home />),
         createRoute("/PostComments/:postId", <PostComments />),
