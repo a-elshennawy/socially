@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { db } from "../firebase";
+import { db } from "../../firebase";
 import { doc, updateDoc, arrayUnion } from "firebase/firestore";
 import { FaHourglassEnd } from "react-icons/fa";
 import { IoSend } from "react-icons/io5";
