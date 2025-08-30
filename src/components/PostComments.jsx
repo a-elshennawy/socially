@@ -9,7 +9,6 @@ import SpinnerLoader from "./SpinnerLoader";
 import CommentsInput from "./CommentsInput";
 import { FcLike } from "react-icons/fc";
 import { linkify } from "../utils/linkify";
-import { Helmet } from "react-helmet";
 export default function PostComments() {
   const { postId } = useParams();
   const [post, setPost] = useState(null);
@@ -169,9 +168,6 @@ export default function PostComments() {
 
   return (
     <>
-      <Helmet>
-        <title>{`Socially - Post ${postId} Comments`}</title>
-      </Helmet>
       <section className="container-fluid postComm">
         <div
           key={post.id}

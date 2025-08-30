@@ -19,7 +19,6 @@ import { Link } from "react-router-dom";
 import { FcLike } from "react-icons/fc";
 import FilterPannel from "./FilterPannel";
 import { linkify } from "../utils/linkify";
-import { Helmet } from "react-helmet";
 
 async function getPosts() {
   const q = query(collection(db, "posts"), orderBy("timestamp", "desc"));
@@ -125,9 +124,6 @@ export default function Home() {
 
   return (
     <Suspense fallback={<SpinnerLoader />}>
-      <Helmet>
-        <title>Socially - Feed</title>
-      </Helmet>
       <section className="container postsFeed">
         <div className="posts row justify-content-start align-items-center gap-2 m-0">
           <PostInput />
