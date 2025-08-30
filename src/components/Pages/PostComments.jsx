@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { CiHeart } from "react-icons/ci";
 import { db } from "../../firebase";
 import { doc, onSnapshot, updateDoc } from "firebase/firestore";
-import { FaQuestion, FaUser } from "react-icons/fa";
+import { FaQuestion, FaUser, FaShare } from "react-icons/fa";
 import { MdVerified } from "react-icons/md";
 import SpinnerLoader from "../ReusableComponents/SpinnerLoader";
 import CommentsInput from "../ReusableComponents/CommentsInput";
