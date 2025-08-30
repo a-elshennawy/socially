@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { db } from "../firebase";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
-import { MdPostAdd } from "react-icons/md";
-import { BiSolidImageAdd } from "react-icons/bi";
 
 export default function PostInput() {
   const [newPost, setNewPost] = useState("");
