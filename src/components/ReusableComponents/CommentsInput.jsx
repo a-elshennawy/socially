@@ -2,8 +2,8 @@ import { useState } from "react";
 import { db } from "../../firebase";
 import { doc, updateDoc, arrayUnion } from "firebase/firestore";
 import { FaHourglassEnd } from "react-icons/fa";
-import { IoSend } from "react-icons/io5";
 import { nanoid } from "nanoid";
+import { BiSolidCommentAdd } from "react-icons/bi";
 
 export default function CommentsInput({ postId }) {
   const [commentText, setCommentText] = useState("");
@@ -72,7 +72,7 @@ export default function CommentsInput({ postId }) {
               </>
             ) : (
               <>
-                <IoSend />
+                <BiSolidCommentAdd />
               </>
             )}
           </button>

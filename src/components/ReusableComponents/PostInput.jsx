@@ -77,27 +77,15 @@ export default function PostInput() {
           value={newPost}
         ></textarea>
 
-        {postType === "use_name" && (
-          <input
-            type="text"
-            placeholder="Your name"
-            className="col-5 col-lg-2"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-          />
-        )}
-
-        <select
-          className="col-6 col-lg-2"
-          value={postType}
-          onChange={(e) => setPostType(e.target.value)}
+        <input
+          type="text"
+          placeholder="Your name (optional)"
+          className="col-5 col-lg-2"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
           required
-        >
-          <option disabled>post as ?</option>
-          <option value="anonymous">anonymous</option>
-          <option value="use_name">use your name</option>
-        </select>
+        />
+
         <div className="imgUp col-lg-2 col-4 m-0 p-0 text-center">
           <label htmlFor="file-upload" className="custom-file-upload">
             {imageName ? `${imageName}` : "Select image"}

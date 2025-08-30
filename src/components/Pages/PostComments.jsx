@@ -228,17 +228,19 @@ export default function PostComments() {
               {localLikeStatus[post.id] ? <FcLike /> : <CiHeart />}
               {post.likes}
             </span>
-            <span
-              className="col-lg-1 col-6 text-end py-2"
-              onClick={() => copyPostUrl(post.id)}
-              style={{ cursor: "pointer" }}
-            >
-              <FaShare />
-            </span>
           </div>
           <CommentsInput postId={postId} />
           <div className="col-12 commentsSection">
-            <h4>Comments ({post.comments?.length || 0})</h4>
+            <h4>
+              Comments ({post.comments?.length || 0})
+              <span
+                className="text-end py-2 px-3"
+                onClick={() => copyPostUrl(post.id)}
+                style={{ cursor: "pointer" }}
+              >
+                <FaShare />
+              </span>
+            </h4>
             {post.comments?.length > 0 ? (
               post.comments
                 .slice()

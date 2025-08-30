@@ -224,9 +224,12 @@ body.light {
       color: var(--color);
       border: none;
       border-radius: 5px;
+      font-size: 30px;
+      padding: 0;
+      margin-inline-start: 5px;
 
       svg {
-        font-size: 25px;
+        font-size: 30px;
       }
     }
   }
