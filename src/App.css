@@ -266,6 +266,20 @@ body.light {
   z-index: 111;
 }
 
+.shareNotification {
+  padding: 5px;
+  background-color: #fff;
+  color: #000;
+  border-right: 3px solid #09ff00;
+  border-left: 3px solid #09ff00;
+  font-weight: bold;
+
+  svg {
+    font-size: 20px;
+    margin-inline-start: 5px;
+  }
+}
+
 .spinner {
   position: absolute;
   top: 50%;

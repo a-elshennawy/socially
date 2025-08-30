@@ -10,6 +10,7 @@ import SpinnerLoader from "../ReusableComponents/SpinnerLoader";
 import CommentsInput from "../ReusableComponents/CommentsInput";
 import { FcLike } from "react-icons/fc";
 import { linkify } from "../../utils/linkify";
+import { IoCheckmarkCircleSharp } from "react-icons/io5";
 export default function PostComments() {
   const { postId } = useParams();
   const [post, setPost] = useState(null);
@@ -322,15 +323,11 @@ export default function PostComments() {
             bottom: "20px",
             left: "50%",
             transform: "translateX(-50%)",
-            backgroundColor: "#333",
-            color: "white",
-            padding: "12px 24px",
-            borderRadius: "8px",
-            boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
             zIndex: 1001,
           }}
+          className="shareNotification"
         >
-          Post link copied!
+          Post link copied <IoCheckmarkCircleSharp />
         </motion.div>
       )}
     </>

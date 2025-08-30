@@ -19,6 +19,7 @@ import { Link } from "react-router-dom";
 import { FcLike } from "react-icons/fc";
 import FilterPannel from "../ReusableComponents/FilterPannel";
 import { linkify } from "../../utils/linkify";
+import { IoCheckmarkCircleSharp } from "react-icons/io5";
 
 async function getPosts() {
   const q = query(collection(db, "posts"), orderBy("timestamp", "desc"));
@@ -176,18 +177,21 @@ export default function Home() {
                 </div>
               )}
               <span
-                className="col-3 likesCounter"
+                className="col-3 col-lg-2 likesCounter"
                 onClick={() => toggleLike(post.id, post.likes)}
                 style={{ cursor: "pointer" }}
               >
                 {localLikeStatus[post.id] ? <FcLike /> : <CiHeart />}
                 {post.likes}
               </span>
-              <Link to={`/PostComments/${post.id}`} className="col-3 comments">
+              <Link
+                to={`/PostComments/${post.id}`}
+                className="col-3 col-lg-2 comments"
+              >
                 <FaComments /> {post.comments?.length || 0}
               </Link>
               <span
-                className="col-3"
+                className="col-3 col-lg-2"
                 onClick={() => copyPostUrl(post.id)}
                 style={{ cursor: "pointer" }}
               >
@@ -239,15 +243,11 @@ export default function Home() {
             bottom: "20px",
             left: "50%",
             transform: "translateX(-50%)",
-            backgroundColor: "#333",
-            color: "white",
-            padding: "12px 24px",
-            borderRadius: "8px",
-            boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
             zIndex: 1001,
           }}
+          className="shareNotification"
         >
-          Post link copied!
+          Post link copied <IoCheckmarkCircleSharp />
         </motion.div>
       )}
     </Suspense>
