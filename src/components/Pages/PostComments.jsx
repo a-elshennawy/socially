@@ -6,7 +6,7 @@ import { doc, onSnapshot, updateDoc } from "firebase/firestore";
 import { FaQuestion, FaUser } from "react-icons/fa";
 import { MdVerified } from "react-icons/md";
 import SpinnerLoader from "../ReusableComponents/SpinnerLoader";
-import CommentsInput from "../CommentsInput";
+import CommentsInput from "../ReusableComponents/CommentsInput";
 import { FcLike } from "react-icons/fc";
 import { linkify } from "../../utils/linkify";
 export default function PostComments() {

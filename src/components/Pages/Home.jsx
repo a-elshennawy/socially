@@ -1,7 +1,7 @@
 import { motion } from "motion/react";
 import { use, Suspense, useState, useEffect } from "react";
 import { CiHeart } from "react-icons/ci";
-import PostInput from "../PostInput";
+import PostInput from "../ReusableComponents/PostInput";
 import SpinnerLoader from "../ReusableComponents/SpinnerLoader";
 import { db } from "../../firebase";
 import {
