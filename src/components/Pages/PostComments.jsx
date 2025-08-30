@@ -1,14 +1,14 @@
 import { Link, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { CiHeart } from "react-icons/ci";
-import { db } from "../firebase";
+import { db } from "../../firebase";
 import { doc, onSnapshot, updateDoc } from "firebase/firestore";
 import { FaQuestion, FaUser } from "react-icons/fa";
 import { MdVerified } from "react-icons/md";
-import SpinnerLoader from "./SpinnerLoader";
-import CommentsInput from "./CommentsInput";
+import SpinnerLoader from "../ReusableComponents/SpinnerLoader";
+import CommentsInput from "../CommentsInput";
 import { FcLike } from "react-icons/fc";
-import { linkify } from "../utils/linkify";
+import { linkify } from "../../utils/linkify";
 export default function PostComments() {
   const { postId } = useParams();
   const [post, setPost] = useState(null);

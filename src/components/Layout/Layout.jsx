@@ -1,4 +1,4 @@
-import SideBar from "./SideBar";
+import SideBar from "../SideBar";
 import UpBtn from "./UpBtn";
 import { Outlet } from "react-router-dom";
 

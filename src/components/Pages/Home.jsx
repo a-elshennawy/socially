@@ -1,9 +1,9 @@
 import { motion } from "motion/react";
 import { use, Suspense, useState, useEffect } from "react";
 import { CiHeart } from "react-icons/ci";
-import PostInput from "./PostInput";
-import SpinnerLoader from "./SpinnerLoader";
-import { db } from "../firebase";
+import PostInput from "../PostInput";
+import SpinnerLoader from "../ReusableComponents/SpinnerLoader";
+import { db } from "../../firebase";
 import {
   collection,
   doc,
@@ -17,8 +17,8 @@ import { FaComments, FaQuestion, FaUser } from "react-icons/fa";
 import { MdVerified } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { FcLike } from "react-icons/fc";
-import FilterPannel from "./FilterPannel";
-import { linkify } from "../utils/linkify";
+import FilterPannel from "../ReusableComponents/FilterPannel";
+import { linkify } from "../../utils/linkify";
 
 async function getPosts() {
   const q = query(collection(db, "posts"), orderBy("timestamp", "desc"));

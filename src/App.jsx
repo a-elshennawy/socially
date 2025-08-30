@@ -1,11 +1,11 @@
 import { lazy, Suspense } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./App.css";
-import Layout from "./components/Layout";
-import SpinnerLoader from "./components/SpinnerLoader";
+import Layout from "./components/Layout/Layout";
+import SpinnerLoader from "./components/ReusableComponents/SpinnerLoader";
 
-const Home = lazy(() => import("./components/Home"));
-const PostComments = lazy(() => import("./components/PostComments"));
+const Home = lazy(() => import("./components/Pages/Home"));
+const PostComments = lazy(() => import("./components/Pages/PostComments"));
 
 const createRoute = (path, element) => ({
   path,
