@@ -13,7 +13,7 @@ import {
   orderBy,
   onSnapshot,
 } from "firebase/firestore";
-import { FaComments, FaQuestion, FaUser } from "react-icons/fa";
+import { FaComments, FaQuestion, FaShare, FaUser } from "react-icons/fa";
 import { MdVerified } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { FcLike } from "react-icons/fc";
@@ -38,6 +38,7 @@ export default function Home() {
   const [allPosts, setAllPosts] = useState(posts);
   const [filterType, setFilterType] = useState("newFirst");
   const [enlargedImage, setEnlargedImage] = useState(null);
+  const [showNotification, setShowNotification] = useState(false);
 
   const [localLikeStatus, setLocalLikeStatus] = useState(() => {
     if (typeof window !== "undefined") {
@@ -91,7 +92,6 @@ export default function Home() {
       });
     } catch (err) {
       console.error("Error updating like:", err);
-      // Revert on error
       setLocalLikeStatus((prev) => ({
         ...prev,
         [postId]: !prev[postId],
@@ -120,6 +120,19 @@ export default function Home() {
       return <FaQuestion />;
     }
     return <FaUser />;
+  };
+
+  const copyPostUrl = (post) => {
+    const postUrl = `https://socially.pages.dev/PostComments/${postId}`;
+    navigator.clipboard
+      .writeText(postUrl)
+      .then(() => {
+        setShowNotification(true);
+        setTimeout(() => setShowNotification(false), 3000);
+      })
+      .catch((err) => {
+        console.error("failed to copy link :", err);
+      });
   };
 
   return (
@@ -172,10 +185,17 @@ export default function Home() {
               </span>
               <Link
                 to={`/PostComments/${post.id}`}
-                className="col-lg-2 col-6 comments"
+                className="col-lg-2 col-4 comments"
               >
                 <FaComments /> {post.comments?.length || 0} Comments
               </Link>
+              <span
+                className="col-lg-2 col-3"
+                onClick={() => copyPostUrl(post.id)}
+                style={{ cursor: "pointer" }}
+              >
+                <FaShare />
+              </span>
             </motion.div>
           ))}
         </div>
@@ -210,6 +230,28 @@ export default function Home() {
             onClick={(e) => e.stopPropagation()}
           />
         </div>
+      )}
+
+      {showNotification && (
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 50 }}
+          style={{
+            position: "fixed",
+            bottom: "20px",
+            left: "50%",
+            transform: "translateX(-50%)",
+            backgroundColor: "#333",
+            color: "white",
+            padding: "12px 24px",
+            borderRadius: "8px",
+            boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
+            zIndex: 1001,
+          }}
+        >
+          Post link copied!
+        </motion.div>
       )}
     </Suspense>
   );
