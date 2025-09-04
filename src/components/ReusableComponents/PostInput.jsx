@@ -50,7 +50,7 @@ export default function PostInput() {
       <form
         id="addPost"
         onSubmit={addPost}
-        className="postInput col-10 row justify-content-start align-items-center gap-1 m-0"
+        className="postInput col-11 row justify-content-start align-items-center gap-1 m-0"
       >
         <textarea
           onKeyDown={(e) => {
