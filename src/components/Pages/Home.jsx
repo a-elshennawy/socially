@@ -164,11 +164,11 @@ export default function Home() {
                   hour12: true,
                 })}
               </h6>
-              <h5 className="col-12" style={{ whiteSpace: "pre-wrap" }}>
+              <h6 className="col-12" style={{ whiteSpace: "pre-wrap" }}>
                 {linkify(post.text)}
-              </h5>
+              </h6>
               {post.image && (
-                <div className="post-image-container col-12">
+                <div className="post-image-container col-12 col-lg-6">
                   <img
                     src={post.image}
                     alt="Posted media"
@@ -176,27 +176,29 @@ export default function Home() {
                   />
                 </div>
               )}
-              <span
-                className="col-3 col-lg-2 likesCounter"
-                onClick={() => toggleLike(post.id, post.likes)}
-                style={{ cursor: "pointer" }}
-              >
-                {localLikeStatus[post.id] ? <FcLike /> : <CiHeart />}
-                {post.likes}
-              </span>
-              <Link
-                to={`/PostComments/${post.id}`}
-                className="col-3 col-lg-2 comments"
-              >
-                <FaComments /> {post.comments?.length || 0}
-              </Link>
-              <span
-                className="col-3 col-lg-2"
-                onClick={() => copyPostUrl(post.id)}
-                style={{ cursor: "pointer" }}
-              >
-                <FaShare />
-              </span>
+              <div className="postActions col-12 row justify-content-start align-items-center m-0 py-1 px-0">
+                <span
+                  className="col-3 col-lg-1 likesCounter"
+                  onClick={() => toggleLike(post.id, post.likes)}
+                  style={{ cursor: "pointer" }}
+                >
+                  {localLikeStatus[post.id] ? <FcLike /> : <CiHeart />}
+                  {post.likes}
+                </span>
+                <Link
+                  to={`/PostComments/${post.id}`}
+                  className="col-3 col-lg-1 comments"
+                >
+                  <FaComments /> {post.comments?.length || 0}
+                </Link>
+                <span
+                  className="col-3 col-lg-1"
+                  onClick={() => copyPostUrl(post.id)}
+                  style={{ cursor: "pointer" }}
+                >
+                  <FaShare />
+                </span>
+              </div>
             </motion.div>
           ))}
         </div>

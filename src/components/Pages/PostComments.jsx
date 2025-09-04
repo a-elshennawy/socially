@@ -208,11 +208,11 @@ export default function PostComments() {
                 hour12: true,
               })}
             </p>
-            <h3 className="col-12 postBody" style={{ whiteSpace: "pre-wrap" }}>
+            <h5 className="col-12 postBody" style={{ whiteSpace: "pre-wrap" }}>
               {linkify(post.text)}
-            </h3>
+            </h5>
             {post.image && (
-              <div className="post-image-container col-12">
+              <div className="post-image-container px-2 col-12 col-lg-5">
                 <img
                   src={post.image}
                   alt="Posted media"
@@ -220,8 +220,9 @@ export default function PostComments() {
                 />
               </div>
             )}
+
             <span
-              className="col-lg-1 col-6 likesCounter text-start py-2"
+              className="col-12 likesCounter text-start py-2"
               onClick={toggleLike}
               style={{ cursor: "pointer" }}
             >
@@ -231,7 +232,7 @@ export default function PostComments() {
           </div>
           <CommentsInput postId={postId} />
           <div className="col-12 commentsSection">
-            <h4>
+            <h5>
               Comments ({post.comments?.length || 0})
               <span
                 className="text-end py-2 px-3"
@@ -240,7 +241,7 @@ export default function PostComments() {
               >
                 <FaShare />
               </span>
-            </h4>
+            </h5>
             {post.comments?.length > 0 ? (
               post.comments
                 .slice()
