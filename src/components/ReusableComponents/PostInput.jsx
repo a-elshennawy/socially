@@ -4,29 +4,12 @@ import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 
 export default function PostInput() {
   const [newPost, setNewPost] = useState("");
-  const [postType, setPostType] = useState("anonymous");
   const [name, setName] = useState("");
-  const [imageAsBase64, setImageAsBase64] = useState(null);
-  const [imageName, setImageName] = useState(null);
-
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setImageName(file.name);
-      const reader = new FileReader();
-
-      reader.onload = (readerEvent) => {
-        setImageAsBase64(readerEvent.target.result);
-      };
-
-      reader.readAsDataURL(file);
-    }
-  };
 
   const addPost = async (e) => {
     e.preventDefault();
 
-    if (!newPost.trim() && !imageAsBase64) return;
+    if (!newPost.trim()) return;
 
     try {
       await addDoc(collection(db, "posts"), {
@@ -35,11 +18,8 @@ export default function PostInput() {
         timestamp: serverTimestamp(),
         likes: 0,
         comments: [],
-        image: imageAsBase64,
       });
       setNewPost("");
-      setImageAsBase64(null);
-      setImageName(null);
     } catch (err) {
       console.error("error adding post", err);
     }
@@ -71,7 +51,7 @@ export default function PostInput() {
             e.target.style.height = e.target.scrollHeight + "px";
           }}
           name="postBody"
-          placeholder="add post..."
+          placeholder="add post ..."
           className="col-12 col-lg-5"
           rows={1}
           value={newPost}
@@ -79,33 +59,16 @@ export default function PostInput() {
 
         <input
           type="text"
-          placeholder="Your name (optional)"
-          className="col-5 col-lg-2"
+          placeholder="Username (optional)"
+          className="col-7 col-lg-2"
           value={name}
           onChange={(e) => setName(e.target.value)}
           required
         />
 
-        <div className="imgUp col-lg-2 col-4 m-0 p-0 text-center">
-          <label htmlFor="file-upload" className="custom-file-upload">
-            {imageName ? `${imageName}` : "Select image"}
-          </label>
-          <input
-            id="file-upload"
-            type="file"
-            accept="image/*"
-            onChange={handleImageChange}
-            style={{ display: "none" }}
-          />
-        </div>
-
         <div className="btnArea col-lg-2 col-4 p-0">
-          <button
-            disabled={!newPost.trim() && !imageAsBase64}
-            type="submit"
-            className="postBtn"
-          >
-            add post
+          <button disabled={!newPost.trim()} type="submit" className="postBtn">
+            Post
           </button>
         </div>
       </form>

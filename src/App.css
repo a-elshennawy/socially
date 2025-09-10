@@ -111,17 +111,6 @@ body.light {
       gap: 5px;
     }
 
-    .post-image-container {
-      overflow: hidden;
-      padding: 0;
-
-      img {
-        border-radius: 16px;
-        width: 100%;
-        margin: auto;
-      }
-    }
-
     .likesCounter,
     .comments {
       display: inline-flex;
@@ -171,17 +160,6 @@ body.light {
 
   .postBody {
     padding-bottom: 10px;
-  }
-
-  .post-image-container {
-    overflow: hidden;
-    padding: 0;
-
-    img {
-      border-radius: 16px;
-      width: 100%;
-      margin: auto;
-    }
   }
 
   .likesCounter {

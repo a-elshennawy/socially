@@ -15,9 +15,7 @@ export default function PostComments() {
   const { postId } = useParams();
   const [post, setPost] = useState(null);
   const [loading, setloading] = useState(true);
-  const [enlargedImage, setEnlargedImage] = useState(null);
   const [showNotification, setShowNotification] = useState(false);
-
   const [localLikeStatus, setLocalLikeStatus] = useState(() => {
     if (typeof window !== "undefined") {
       const savedLikes = localStorage.getItem("likedPosts");
@@ -211,16 +209,6 @@ export default function PostComments() {
             <h5 className="col-12 postBody" style={{ whiteSpace: "pre-wrap" }}>
               {linkify(post.text)}
             </h5>
-            {post.image && (
-              <div className="post-image-container px-2 col-12 col-lg-5">
-                <img
-                  src={post.image}
-                  alt="Posted media"
-                  onClick={() => setEnlargedImage(post.image)}
-                />
-              </div>
-            )}
-
             <span
               className="col-12 likesCounter text-start py-2"
               onClick={toggleLike}
@@ -284,37 +272,6 @@ export default function PostComments() {
           </div>
         </div>
       </section>
-
-      {enlargedImage && (
-        <div
-          onClick={() => setEnlargedImage(null)}
-          style={{
-            position: "fixed",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100%",
-            backgroundColor: "rgba(0, 0, 0, 0.9)",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            zIndex: 1000,
-          }}
-        >
-          <img
-            src={enlargedImage}
-            alt="Enlarged media"
-            style={{
-              maxWidth: "90%",
-              maxHeight: "90%",
-              objectFit: "contain",
-              borderRadius: "8px",
-              cursor: "pointer",
-            }}
-            onClick={(e) => e.stopPropagation()}
-          />
-        </div>
-      )}
 
       {showNotification && (
         <motion.div
