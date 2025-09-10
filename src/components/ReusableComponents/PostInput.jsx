@@ -30,7 +30,7 @@ export default function PostInput() {
       <form
         id="addPost"
         onSubmit={addPost}
-        className="postInput col-11 row justify-content-start align-items-center gap-1 m-0"
+        className="postInput col-11 col-lg-6 row justify-content-start align-items-center gap-1 m-0"
       >
         <textarea
           onKeyDown={(e) => {
@@ -60,7 +60,7 @@ export default function PostInput() {
         <input
           type="text"
           placeholder="Username (optional)"
-          className="col-7 col-lg-2"
+          className="col-7 col-lg-4"
           value={name}
           onChange={(e) => setName(e.target.value)}
           required
