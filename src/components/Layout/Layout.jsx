@@ -1,11 +1,11 @@
-import SideBar from "./SideBar";
+import NavBar from "./NavBar";
 import UpBtn from "./UpBtn";
 import { Outlet } from "react-router-dom";
 
 export default function Layout() {
   return (
     <>
-      <SideBar />
+      <NavBar />
       <Outlet />
       <UpBtn />
     </>

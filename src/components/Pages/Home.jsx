@@ -138,20 +138,19 @@ export default function Home() {
     <Suspense fallback={<SpinnerLoader />}>
       <section className="container postsFeed">
         <div className="posts row justify-content-start align-items-center gap-2 m-0">
-          <PostInput />
           <FilterPannel
             onFilterChange={handleFilterChange}
             currentFilter={filterType}
           />
           {allPosts.map((post) => (
-            <motion.div
+            <div
               initial={{ y: 100, opacity: 0, scale: 0.5 }}
               whileInView={{ y: 0, opacity: 1, scale: 1 }}
               transition={{ duration: 0.1, ease: "linear" }}
               key={post.id}
               className="post m-0 col-11 row justify-content-start align-items-center gap-2"
             >
-              <h6 className="col-12 userName">
+              <h6 className="col-12 m-0 px-0 userName">
                 {post.senderName} {getUsernameIcon(post.senderName)}
                 {post.timestamp.toLocaleString("en-US", {
                   month: "numeric",
@@ -162,12 +161,15 @@ export default function Home() {
                   hour12: true,
                 })}
               </h6>
-              <h6 className="col-12" style={{ whiteSpace: "pre-wrap" }}>
+              <h5
+                className="col-12 m-0 px-0"
+                style={{ whiteSpace: "pre-wrap" }}
+              >
                 {linkify(post.text)}
-              </h6>
-              <div className="postActions col-12 row justify-content-start align-items-center m-0 py-1 px-0">
+              </h5>
+              <div className="postActions col-12 px-0 row justify-content-start align-items-center m-0 py-1 px-0">
                 <span
-                  className="col-3 col-lg-1 likesCounter"
+                  className="col-3 px-0 col-lg-1 likesCounter"
                   onClick={() => toggleLike(post.id, post.likes)}
                   style={{ cursor: "pointer" }}
                 >
@@ -176,19 +178,19 @@ export default function Home() {
                 </span>
                 <Link
                   to={`/PostComments/${post.id}`}
-                  className="col-3 col-lg-1 comments"
+                  className="col-3 px-0 col-lg-1 comments"
                 >
                   <FaComments /> {post.comments?.length || 0}
                 </Link>
                 <span
-                  className="col-3 col-lg-1"
+                  className="col-3 px-0 col-lg-1"
                   onClick={() => copyPostUrl(post.id)}
                   style={{ cursor: "pointer" }}
                 >
                   <FaShare />
                 </span>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </section>

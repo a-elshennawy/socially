@@ -185,18 +185,19 @@ export default function PostComments() {
       <section className="container-fluid postComm">
         <div
           key={post.id}
-          className="postDetails m-0 row justify-content-start align-items-center gap-1"
+          className="postDetails m-0 row justify-content-start align-items-center"
         >
-          <div className="backBtnArea col-12">
+          <div className="backBtnArea m-0 px-0 text-start col-12">
             <button className="backBtn">
               <Link to={"/"}>back</Link>
             </button>
           </div>
-          <div className="upperPostBody row">
-            <h5 className="col-12 userName m-0">
-              {post.senderName} {getUsernameIcon(post.senderName)}
+          <div className="upperPostBody m-0 p-0 row">
+            <h5 className="col-12 userName mx-0 px-0">
+              {post.senderName}&nbsp;
+              {getUsernameIcon(post.senderName)}
             </h5>
-            <p>
+            <p className="px-0">
               {post.timestamp.toLocaleString("en-US", {
                 month: "numeric",
                 day: "numeric",
@@ -206,20 +207,25 @@ export default function PostComments() {
                 hour12: true,
               })}
             </p>
-            <h5 className="col-12 postBody" style={{ whiteSpace: "pre-wrap" }}>
+            <h5
+              className="col-12 postBody px-0"
+              style={{ whiteSpace: "pre-wrap" }}
+            >
               {linkify(post.text)}
             </h5>
-            <span
-              className="col-12 likesCounter text-start py-2"
-              onClick={toggleLike}
-              style={{ cursor: "pointer" }}
-            >
-              {localLikeStatus[post.id] ? <FcLike /> : <CiHeart />}
-              {post.likes}
-            </span>
+            <div className="col-12 px-0">
+              <span
+                className="likesCounter text-start py-2"
+                onClick={toggleLike}
+              >
+                {localLikeStatus[post.id] ? <FcLike /> : <CiHeart />}
+                {post.likes}
+              </span>
+            </div>
           </div>
+          <hr />
           <CommentsInput postId={postId} />
-          <div className="col-12 commentsSection">
+          <div className="col-12 p-0 commentsSection">
             <h5>
               Comments ({post.comments?.length || 0})
               <span
@@ -264,6 +270,7 @@ export default function PostComments() {
                       {localLikeStatus[comment.id] ? <FcLike /> : <CiHeart />}
                       {comment.likes}
                     </span>
+                    <hr className="my-2" />
                   </div>
                 ))
             ) : (
