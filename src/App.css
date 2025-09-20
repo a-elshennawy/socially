@@ -9,45 +9,41 @@
   --background: #000;
   --color: #fff;
   --postBackG: rgba(255, 255, 255, 0.1);
+  --navbarColor: rgba(255, 255, 255, 0.1);
+  --navbarinsides: #fff;
   --postsBorder: rgba(255, 255, 255, 0.2);
 }
 
 body {
   background-color: var(--background) !important;
   color: var(--color) !important;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out !important;
 }
 
 body.light {
   --background: #fff;
   --color: #000;
   --postBackG: #fff;
+  --navbarColor: linear-gradient(
+    135deg,
+    rgba(99, 0, 255, 0.15),
+    rgba(0, 204, 255, 0.15)
+  );
+  --navbarinsides: #000;
   --postsBorder: #000;
   transition: all 0.3s ease-in-out;
 }
 
-.postComm {
-  padding: 50px 0px;
-  background-color: transparent;
-}
+nav {
+  background: var(--navbarColor);
+  color: var(--navbarinsides);
+  backdrop-filter: blur(10px);
+  padding: 10px;
+  position: sticky;
+  top: 0;
+  z-index: 1111;
 
-.postsFeed {
-  padding: 30px 0px;
-  background-color: transparent;
-}
-
-.posts {
   .postInput {
-    position: sticky;
-    top: 10px;
-    padding: 10px;
-    border-radius: 20px;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(5px);
-    border: 1px solid var(--postsBorder);
-    z-index: 1111;
-    transition: all 0.3s ease-in-out;
-
     textarea,
     select,
     input {
@@ -61,86 +57,48 @@ body.light {
         outline: none;
       }
     }
-    .imgUp {
-      width: fit-content;
-      label {
-        border: 1px solid var(--color);
-        border-radius: 12px;
-        padding: 5px 10px;
-        background-color: var(--color);
-        color: var(--background);
-        transition: all 0.3s ease-in-out;
-      }
-    }
+
     .btnArea {
       text-align: start;
 
       .postBtn {
-        border: 1px solid var(--color);
+        border: none;
         border-radius: 12px;
         padding: 5px 10px;
-        background-color: var(--color);
-        color: var(--background);
+        background-color: #fff;
+        color: #000;
         transition: all 0.3s ease-in-out;
       }
     }
   }
 
-  .filterContent {
-    padding: 0px 5px;
+  span {
+    cursor: pointer;
 
-    select {
-      background-color: var(--background);
-      color: var(--color);
-      border: none;
-      padding: 5px;
-      transition: all 0.3s ease-in-out;
-    }
-  }
-
-  .post {
-    background: var(--postBackG);
-    border: 1px solid var(--postsBorder);
-    border-radius: 16px;
-    padding: 10px 5px;
-    transition: all 0.3s ease-in-out;
-
-    .userName {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
-
-    .likesCounter,
-    .comments {
-      display: inline-flex;
-      align-items: center;
-      color: var(--color);
-      text-decoration: none;
-
-      svg {
-        margin-inline-end: 5px;
-        font-size: 20px;
-        cursor: pointer;
-      }
+    svg {
+      font-size: 20px;
     }
   }
 }
 
+.postComm {
+  padding: 10px 0px;
+  background-color: transparent;
+}
+
 .postDetails {
-  width: 95%;
   margin: auto;
 
   .backBtnArea {
     background-color: var(--background);
-    text-align: start;
-    position: fixed;
+    position: sticky;
     top: 0;
     left: 0;
-    padding: 10px 5px;
+    padding-bottom: 10px;
     transition: all 0.3s ease-in-out;
 
     .backBtn {
+      padding: 5px 10px;
       background-color: var(--background);
       border: 1px solid var(--color);
       border-radius: 5px;
@@ -155,7 +113,6 @@ body.light {
 
   .upperPostBody {
     padding: 10px 5px;
-    border-bottom: 1px solid var(--color);
   }
 
   .postBody {
@@ -166,6 +123,8 @@ body.light {
     display: flex;
     align-items: center;
     color: var(--color);
+    cursor: pointer;
+    width: fit-content;
 
     svg {
       margin-inline-end: 5px;
@@ -180,13 +139,11 @@ body.light {
     .comment {
       margin: 10px 0px;
       width: fit-content;
-      border-bottom: 1px solid var(--color);
     }
   }
 }
 
 .commentForm {
-  padding: 5px 0px;
   textarea {
     border: 1px solid var(--color);
     outline: none;
@@ -215,25 +172,57 @@ body.light {
   }
 }
 
-.sideBar {
-  position: fixed;
-  top: 20px;
-  right: 10px;
-  z-index: 1111;
+.postsFeed {
+  padding: 10px 0px;
+  background-color: transparent;
+}
 
-  span {
-    cursor: pointer;
-    font-size: 25px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: var(--color);
+.posts {
+  .filterContent {
+    background: var(--navbarColor);
+    color: var(--navbarinsides);
+    transition: all 0.3s ease-in-out;
+    padding: 5px;
+    width: fit-content;
+    border-radius: 10px;
+
+    select {
+      background-color: transparent;
+      color: var(--navbarinsides);
+
+      border: none;
+      padding: 5px;
+      transition: all 0.3s ease-in-out;
+
+      option {
+        color: #000;
+      }
+    }
+  }
+
+  .post {
     background-color: transparent;
+    padding: 10px 0px;
+    transition: all 0.3s ease-in-out;
+    border-bottom: 1px solid var(--color);
+    .userName {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
 
-    a {
-      text-align: center;
-      text-decoration: none;
+    .likesCounter,
+    .comments {
+      display: inline-flex;
+      align-items: center;
       color: var(--color);
+      text-decoration: none;
+
+      svg {
+        margin-inline-end: 5px;
+        font-size: 20px;
+        cursor: pointer;
+      }
     }
   }
 }
@@ -268,6 +257,31 @@ body.light {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.offline-message {
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -20%);
+  width: max-content;
+  background-color: #fd000096;
+  backdrop-filter: blur(10px);
+  padding: 5px;
+  border-radius: 10px;
+  animation: alertOffline 1s infinite;
+}
+
+@keyframes alertOffline {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */

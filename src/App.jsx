@@ -1,4 +1,5 @@
 import { lazy, Suspense } from "react";
+import { Offline } from "react-detect-offline";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./App.css";
 import Layout from "./components/Layout/Layout";
@@ -17,13 +18,20 @@ function App() {
     {
       path: "/",
       element: <Layout />,
-      children: [
-        createRoute("", <Home />),
-        createRoute("/PostComments/:postId", <PostComments />),
-      ],
+      children: [createRoute("", <Home />)],
     },
+    createRoute("/PostComments/:postId", <PostComments />),
   ]);
-  return <RouterProvider router={routes} />;
+  return (
+    <>
+      <Offline>
+        <div className="offline-message">
+          You're offline. Check your connection...
+        </div>
+      </Offline>
+      <RouterProvider router={routes} />
+    </>
+  );
 }
 
 export default App;

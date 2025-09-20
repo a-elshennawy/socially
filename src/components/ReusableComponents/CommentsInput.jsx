@@ -38,7 +38,7 @@ export default function CommentsInput({ postId }) {
     <>
       <form
         onSubmit={addComment}
-        className="commentForm row justify-content-start align-items-center gap-1"
+        className="commentForm row justify-content-start align-items-center gap-1 m-0 p-0"
       >
         <textarea
           value={commentText}
