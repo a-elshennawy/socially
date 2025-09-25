@@ -191,8 +191,8 @@ export default function Home() {
                     <FaShare />
                   </span>
                 </div>
-                <hr />
               </div>
+              <hr className="m-0" />
             </div>
           ))}
         </div>
