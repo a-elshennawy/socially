@@ -143,52 +143,55 @@ export default function Home() {
             currentFilter={filterType}
           />
           {allPosts.map((post) => (
-            <div
-              initial={{ y: 100, opacity: 0, scale: 0.5 }}
-              whileInView={{ y: 0, opacity: 1, scale: 1 }}
-              transition={{ duration: 0.1, ease: "linear" }}
-              key={post.id}
-              className="post m-0 col-11 row justify-content-start align-items-center gap-2"
-            >
-              <h6 className="col-12 m-0 px-0 userName">
-                {post.senderName} {getUsernameIcon(post.senderName)}
-                {post.timestamp.toLocaleString("en-US", {
-                  month: "numeric",
-                  day: "numeric",
-                  year: "numeric",
-                  hour: "numeric",
-                  minute: "2-digit",
-                  hour12: true,
-                })}
-              </h6>
-              <h5
-                className="col-12 m-0 px-0"
-                style={{ whiteSpace: "pre-wrap" }}
+            <div className="p-0 m-0">
+              <div
+                initial={{ y: 100, opacity: 0, scale: 0.5 }}
+                whileInView={{ y: 0, opacity: 1, scale: 1 }}
+                transition={{ duration: 0.1, ease: "linear" }}
+                key={post.id}
+                className="post m-0 col-11 row justify-content-start align-items-center gap-2"
               >
-                {linkify(post.text)}
-              </h5>
-              <div className="postActions col-12 px-0 row justify-content-start align-items-center m-0 py-1 px-0">
-                <span
-                  className="col-3 px-0 col-lg-1 likesCounter"
-                  onClick={() => toggleLike(post.id, post.likes)}
-                  style={{ cursor: "pointer" }}
+                <h6 className="col-12 m-0 px-0 userName">
+                  {post.senderName} {getUsernameIcon(post.senderName)}
+                  {post.timestamp.toLocaleString("en-US", {
+                    month: "numeric",
+                    day: "numeric",
+                    year: "numeric",
+                    hour: "numeric",
+                    minute: "2-digit",
+                    hour12: true,
+                  })}
+                </h6>
+                <h5
+                  className="col-12 m-0 px-0"
+                  style={{ whiteSpace: "pre-wrap" }}
                 >
-                  {localLikeStatus[post.id] ? <FcLike /> : <CiHeart />}
-                  {post.likes}
-                </span>
-                <Link
-                  to={`/PostComments/${post.id}`}
-                  className="col-3 px-0 col-lg-1 comments"
-                >
-                  <FaComments /> {post.comments?.length || 0}
-                </Link>
-                <span
-                  className="col-3 px-0 col-lg-1"
-                  onClick={() => copyPostUrl(post.id)}
-                  style={{ cursor: "pointer" }}
-                >
-                  <FaShare />
-                </span>
+                  {linkify(post.text)}
+                </h5>
+                <div className="postActions col-12 px-0 row justify-content-start align-items-center m-0 py-1 px-0">
+                  <span
+                    className="col-3 px-0 col-lg-1 likesCounter"
+                    onClick={() => toggleLike(post.id, post.likes)}
+                    style={{ cursor: "pointer" }}
+                  >
+                    {localLikeStatus[post.id] ? <FcLike /> : <CiHeart />}
+                    {post.likes}
+                  </span>
+                  <Link
+                    to={`/PostComments/${post.id}`}
+                    className="col-3 px-0 col-lg-1 comments"
+                  >
+                    <FaComments /> {post.comments?.length || 0}
+                  </Link>
+                  <span
+                    className="col-3 px-0 col-lg-1"
+                    onClick={() => copyPostUrl(post.id)}
+                    style={{ cursor: "pointer" }}
+                  >
+                    <FaShare />
+                  </span>
+                </div>
+                <hr />
               </div>
             </div>
           ))}
