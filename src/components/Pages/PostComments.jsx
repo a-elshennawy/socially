@@ -4,13 +4,14 @@ import { useState, useEffect } from "react";
 import { CiHeart } from "react-icons/ci";
 import { db } from "../../firebase";
 import { doc, onSnapshot, updateDoc } from "firebase/firestore";
-import { FaQuestion, FaUser, FaShare } from "react-icons/fa";
+import { FaQuestion, FaUser, FaShare, FaHome } from "react-icons/fa";
 import { MdVerified } from "react-icons/md";
 import SpinnerLoader from "../ReusableComponents/SpinnerLoader";
 import CommentsInput from "../ReusableComponents/CommentsInput";
 import { FcLike } from "react-icons/fc";
 import { linkify } from "../../utils/linkify";
 import { IoCheckmarkCircleSharp } from "react-icons/io5";
+import { ThemeToggle } from "../Contexts/ThemeProvider";
 export default function PostComments() {
   const { postId } = useParams();
   const [post, setPost] = useState(null);
@@ -182,16 +183,21 @@ export default function PostComments() {
 
   return (
     <>
+      <div className="miniNav row justify-content-between align-items-center m-0">
+        <button className="backBtn col-5 text-start p-0">
+          <Link to={"/"}>
+            <FaHome />
+          </Link>
+        </button>
+        <div className="col-5 text-end p-0">
+          <ThemeToggle />
+        </div>
+      </div>
       <section className="container-fluid postComm">
         <div
           key={post.id}
           className="postDetails m-0 row justify-content-start align-items-center"
         >
-          <div className="backBtnArea m-0 px-0 text-start col-12">
-            <button className="backBtn">
-              <Link to={"/"}>back</Link>
-            </button>
-          </div>
           <div className="upperPostBody m-0 p-0 row">
             <h5 className="col-12 userName mx-0 px-0">
               {post.senderName}&nbsp;
@@ -208,7 +214,7 @@ export default function PostComments() {
               })}
             </p>
             <h5
-              className="col-12 postBody px-0"
+              className="col-12 postBody m-0 px-0"
               style={{ whiteSpace: "pre-wrap" }}
             >
               {linkify(post.text)}
@@ -223,7 +229,7 @@ export default function PostComments() {
               </span>
             </div>
           </div>
-          <hr />
+          <hr className="m-0" />
           <CommentsInput postId={postId} />
           <div className="col-12 p-0 commentsSection">
             <h5>

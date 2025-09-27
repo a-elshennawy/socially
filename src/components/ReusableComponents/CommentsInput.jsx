@@ -3,7 +3,6 @@ import { db } from "../../firebase";
 import { doc, updateDoc, arrayUnion } from "firebase/firestore";
 import { FaHourglassEnd } from "react-icons/fa";
 import { nanoid } from "nanoid";
-import { BiSolidCommentAdd } from "react-icons/bi";
 
 export default function CommentsInput({ postId }) {
   const [commentText, setCommentText] = useState("");
@@ -38,7 +37,7 @@ export default function CommentsInput({ postId }) {
     <>
       <form
         onSubmit={addComment}
-        className="commentForm row justify-content-start align-items-center gap-1 m-0 p-0"
+        className="commentForm row justify-content-start align-items-center gap-0 m-0 py-2 px-0"
       >
         <textarea
           value={commentText}
@@ -51,7 +50,7 @@ export default function CommentsInput({ postId }) {
           }}
           style={{
             resize: "none",
-            minHeight: "40px",
+            minHeight: "30px",
             maxHeight: "120px",
             overflowY: "auto",
           }}
@@ -60,21 +59,13 @@ export default function CommentsInput({ postId }) {
             e.target.style.height = e.target.scrollHeight + "px";
           }}
           rows={1}
-          className="col-6"
+          className="col-6 col-lg-2"
           placeholder="Add a comment..."
           disabled={isSubmitting}
         />
-        <div className="btnArea col-5 p-0 text-start">
+        <div className="btnArea col-6 p-0 text-start">
           <button type="submit" disabled={!commentText.trim() || isSubmitting}>
-            {isSubmitting ? (
-              <>
-                <FaHourglassEnd />
-              </>
-            ) : (
-              <>
-                <BiSolidCommentAdd />
-              </>
-            )}
+            {isSubmitting ? <>adding...</> : <>add comment</>}
           </button>
         </div>
       </form>

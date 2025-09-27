@@ -31,6 +31,7 @@ export const ThemeToggle = () => {
   return (
     <>
       <span
+        className="themeToggle"
         onClick={() => {
           setTheme((theme) => (theme === "light" ? "dark" : "light"));
         }}
