@@ -81,6 +81,71 @@ nav {
   }
 }
 
+.LogForm {
+  background-color: var(--postBackG);
+  color: var(--color);
+  border-radius: 10px;
+  position: fixed;
+  top: 40%;
+  transform: translateY(-40%);
+  .inputContainer {
+    label {
+      display: block;
+      margin-bottom: 5px;
+      text-transform: capitalize;
+      font-weight: bold;
+    }
+    input {
+      border-radius: 8px;
+      padding: 5px;
+      border: 1px solid var(--postsBorder);
+      color: var(--color);
+      background-color: var(--postBackG);
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+
+  button {
+    display: block;
+    margin: auto;
+    padding: 5px 10px;
+    border-radius: 8px;
+    border: none;
+    background-color: var(--color);
+    color: var(--background);
+    font-weight: bold;
+    text-transform: capitalize;
+  }
+
+  .line {
+    width: 70%;
+    margin: auto;
+    height: 1px;
+    background-color: var(--postsBorder);
+  }
+
+  .withBtn {
+    display: inline-block;
+    background-color: transparent;
+    padding: 0px 10px;
+
+    svg {
+      font-size: 25px;
+    }
+  }
+
+  .withBtn.facebook {
+    color: #3b5998;
+  }
+
+  .withBtn.github {
+    color: #fff;
+  }
+}
+
 .miniNav {
   position: sticky;
   top: 0;

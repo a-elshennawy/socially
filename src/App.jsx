@@ -6,6 +6,8 @@ import SpinnerLoader from "./components/ReusableComponents/SpinnerLoader";
 
 const Home = lazy(() => import("./components/Pages/Home"));
 const PostComments = lazy(() => import("./components/Pages/PostComments"));
+const Signup = lazy(() => import("./components/Pages/Signup/Signup"));
+const Login = lazy(() => import("./components/Pages/Login/Login"));
 
 const createRoute = (path, element) => ({
   path,
@@ -20,6 +22,8 @@ function App() {
       children: [createRoute("", <Home />)],
     },
     createRoute("/PostComments/:postId", <PostComments />),
+    createRoute("/signup", <Signup />),
+    createRoute("/login", <Login />),
   ]);
   return (
     <>
